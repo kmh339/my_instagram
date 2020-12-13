@@ -31,6 +31,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16),
               width: MediaQuery.of(context).size.width,
+              height: 40,
               child: TextFormField(
                 decoration: InputDecoration(
                   hintText: '전화번호, 사용자 이름 또는 이메일',
@@ -58,6 +59,7 @@ class LoginScreen extends StatelessWidget {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 16),
               width: MediaQuery.of(context).size.width,
+              height: 40,
               child: TextFormField(
                 decoration: InputDecoration(
                   hintText: '비밀번호',
@@ -105,16 +107,18 @@ class LoginScreen extends StatelessWidget {
               height: 20,
             ),
             Container(
+              alignment: Alignment.center,
               margin: EdgeInsets.symmetric(horizontal: 16),
               width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () {},
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.blue[300],
-                  onPrimary: Colors.blue[300],
-                  elevation: 0,
-                  padding: EdgeInsets.all(10),
-                ),
+              height: 40,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.blue[300],
+              ),
+              child: GestureDetector(
+                onTap: () {
+                  print('hi');
+                },
                 child: Text(
                   '로그인',
                   style: TextStyle(
