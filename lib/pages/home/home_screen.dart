@@ -39,6 +39,52 @@ class _HomeScreenState extends State<HomeScreen> {
       body: Column(
         children: [],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        showSelectedLabels: false,
+        showUnselectedLabels: false,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.house,
+              color: Colors.black,
+            ),
+            activeIcon: Icon(
+              CupertinoIcons.house_fill,
+              color: Colors.black,
+            ),
+            label: 'home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.search,
+              color: Colors.black,
+            ),
+            label: 'search',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.plus_app,
+              color: Colors.black,
+            ),
+            label: 'plus',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.bag,
+              color: Colors.black,
+            ),
+            label: 'bag',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              CupertinoIcons.bag,
+              color: Colors.black,
+            ),
+            label: 'bag',
+          ),
+        ],
+      ),
     );
   }
 }
