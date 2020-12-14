@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
+import 'package:my_instagram/models/user.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -16,7 +19,7 @@ class LoginScreen extends StatelessWidget {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
+          children: <Widget>[
             const Spacer(),
             Container(
               alignment: Alignment.center,
@@ -106,19 +109,23 @@ class LoginScreen extends StatelessWidget {
             const SizedBox(
               height: 20,
             ),
-            Container(
-              alignment: Alignment.center,
-              margin: EdgeInsets.symmetric(horizontal: 16),
-              width: MediaQuery.of(context).size.width,
-              height: 40,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(5),
-                color: Colors.blue[300],
-              ),
-              child: GestureDetector(
-                onTap: () {
-                  print('hi');
-                },
+            GestureDetector(
+              onTap: () {
+                context.read<AuthenticationBloc>().add(
+                      AuthenticationTried(
+                        user: User(id: 1, userName: 'test', avatar: ''),
+                      ),
+                    );
+              },
+              child: Container(
+                alignment: Alignment.center,
+                margin: EdgeInsets.symmetric(horizontal: 16),
+                width: MediaQuery.of(context).size.width,
+                height: 40,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(5),
+                  color: Colors.blue[300],
+                ),
                 child: Text(
                   '로그인',
                   style: TextStyle(
