@@ -16,6 +16,7 @@ dependencies:
   bloc: ^6.1.1
   flutter_bloc: ^6.1.1
   equatable: ^1.2.5
+  flutter_icons: ^1.1.0
 
 dev_dependencies:
   flutter_test:
@@ -26,6 +27,7 @@ flutter:
 
   assets:
     - assets/logos/
+    - assets/icons/
 
   # fonts:
   #   - family: Schyler
