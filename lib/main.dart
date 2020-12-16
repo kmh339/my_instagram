@@ -1,15 +1,36 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
 import 'package:my_instagram/cubits/cubit/bottom_navigator_cubit.dart';
 import 'package:my_instagram/pages/home/home_screen.dart';
 import 'package:my_instagram/pages/login/login_screen.dart';
+import 'package:my_instagram/repositories/authentication/authentication_repository.dart';
+import 'package:my_instagram/repositories/authentication/authentication_repository_impl.dart';
 
-void main() {
+import 'blocs/login/login_bloc.dart';
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+
   runApp(
-    BlocProvider<AuthenticationBloc>(
-      create: (context) => AuthenticationBloc(),
-      child: MyInstagram(),
+    RepositoryProvider<AuthenticationRepository>(
+      create: (BuildContext buildContext) => AuthenticationRepositoryImpl(),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<AuthenticationBloc>(
+            create: (BuildContext buildContext) => AuthenticationBloc(),
+          ),
+          BlocProvider<LoginBloc>(
+            create: (BuildContext buildContext) {
+              final AuthenticationRepository _authenticationRepository = RepositoryProvider.of<AuthenticationRepository>(buildContext);
+              return LoginBloc(authenticationRepository: _authenticationRepository);
+            },
+          ),
+        ],
+        child: MyInstagram(),
+      ),
     ),
   );
 }

@@ -18,6 +18,9 @@ dependencies:
   equatable: ^1.2.5
   flutter_icons: ^1.1.0
   pull_to_refresh: ^1.6.3
+  firebase_core: ^0.5.3
+  firebase_auth: ^0.18.4+1
+  flutter_facebook_auth: ^1.0.2+2
 
 dev_dependencies:
   flutter_test:
