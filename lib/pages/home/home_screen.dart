@@ -8,6 +8,8 @@ import 'package:my_instagram/pages/home/profile/profile_screen.dart';
 import 'package:my_instagram/pages/home/search/search_screen.dart';
 import 'package:my_instagram/pages/home/shop/shop_screen.dart';
 
+import 'new_feed/new_feed_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -28,7 +30,16 @@ class _HomeScreenState extends State<HomeScreen> {
     return BlocListener<BottomNavigatorCubit, BottomNavigatorState>(
       listener: (BuildContext context, BottomNavigatorState state) {
         if (state is BottomNavigatorUpdated) {
-          _bottomTabIndex = state.tabIndex;
+          if (state.tabIndex == 2) {
+            Navigator.push(
+              context,
+              MaterialPageRoute<Widget>(
+                builder: (BuildContext buildContext) => NewFeedScreen(),
+              ),
+            );
+          } else {
+            _bottomTabIndex = state.tabIndex;
+          }
         }
       },
       child: BlocBuilder<BottomNavigatorCubit, BottomNavigatorState>(
@@ -40,7 +51,9 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 InstagramScreen(),
                 SearchScreen(),
-                Container(),
+                Container(
+                  color: Colors.white,
+                ),
                 ShopScreen(),
                 ProfileScreen(),
               ],

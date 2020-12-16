@@ -19,6 +19,14 @@ class MyInstagram extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'MyInstagram',
+      theme: ThemeData(
+        pageTransitionsTheme: PageTransitionsTheme(
+          builders: {
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+          },
+        ),
+      ),
       home: BlocBuilder<AuthenticationBloc, AuthenticationState>(
         builder: (BuildContext buildContext, AuthenticationState state) {
           if (state is AuthenticationTrySuccess) {
