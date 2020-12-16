@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_instagram/cubits/cubit/bottom_navigator_cubit.dart';
+import 'package:my_instagram/pages/home/instagram/instagram_screen.dart';
+import 'package:my_instagram/pages/home/profile/profile_screen.dart';
+import 'package:my_instagram/pages/home/search/search_screen.dart';
+import 'package:my_instagram/pages/home/shop/shop_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -30,34 +34,16 @@ class _HomeScreenState extends State<HomeScreen> {
       child: BlocBuilder<BottomNavigatorCubit, BottomNavigatorState>(
         builder: (BuildContext buildContext, BottomNavigatorState state) {
           return Scaffold(
-            backgroundColor: Colors.blue,
-            appBar: AppBar(
-              title: Image.asset(
-                'assets/logos/instagram-logo.png',
-                width: 120,
-              ),
-              backgroundColor: Colors.white,
-              elevation: 0,
-              titleSpacing: 5,
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.heart,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {},
-                ),
-                IconButton(
-                  icon: Icon(
-                    CupertinoIcons.paperplane,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {},
-                ),
+            backgroundColor: Colors.white,
+            body: IndexedStack(
+              index: _bottomTabIndex,
+              children: [
+                InstagramScreen(),
+                SearchScreen(),
+                Container(),
+                ShopScreen(),
+                ProfileScreen(),
               ],
-            ),
-            body: Column(
-              children: [],
             ),
             bottomNavigationBar: BottomNavigationBar(
               backgroundColor: Colors.white,
@@ -108,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     CupertinoIcons.bag_fill,
                     color: Colors.black,
                   ),
-                  label: 'bag',
+                  label: 'shop',
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
@@ -119,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     CupertinoIcons.person_crop_circle_fill,
                     color: Colors.black,
                   ),
-                  label: 'bag',
+                  label: 'profile',
                 ),
               ],
             ),
