@@ -64,7 +64,6 @@ class _HomeScreenState extends State<HomeScreen> {
               type: BottomNavigationBarType.fixed,
               showSelectedLabels: false,
               showUnselectedLabels: false,
-              iconSize: 24,
               currentIndex: _bottomTabIndex,
               onTap: (int index) => context.read<BottomNavigatorCubit>().updateTabIndex(index: index),
               items: <BottomNavigationBarItem>[
@@ -84,11 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 BottomNavigationBarItem(
                   icon: Icon(
-                    Ionicons.ios_search,
+                    Feather.search,
                     color: Colors.black,
                   ),
                   activeIcon: Icon(
-                    Ionicons.md_search,
+                    FontAwesome.search,
                     color: Colors.black,
                   ),
                   label: 'search',
