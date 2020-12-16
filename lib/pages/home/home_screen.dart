@@ -61,6 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
             bottomNavigationBar: BottomNavigationBar(
               backgroundColor: Colors.white,
               type: BottomNavigationBarType.fixed,
+              elevation: 0,
               showSelectedLabels: false,
               showUnselectedLabels: false,
               currentIndex: _bottomTabIndex,

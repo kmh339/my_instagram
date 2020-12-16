@@ -42,11 +42,11 @@ class _InstagramScreenState extends State<InstagramScreen> {
       appBar: AppBar(
         title: Image.asset(
           'assets/logos/instagram-logo.png',
-          width: 120,
+          height: 48,
         ),
         backgroundColor: Colors.white,
         elevation: 0,
-        titleSpacing: 5,
+        titleSpacing: 10,
         actions: [
           IconButton(
             icon: Icon(
@@ -66,6 +66,7 @@ class _InstagramScreenState extends State<InstagramScreen> {
       ),
       body: SmartRefresher(
         controller: _refreshController,
+        physics: const BouncingScrollPhysics(),
         enablePullDown: true,
         enablePullUp: true,
         onRefresh: _onRefresh,
@@ -99,7 +100,6 @@ class _InstagramScreenState extends State<InstagramScreen> {
           },
         ),
         child: ListView.builder(
-          physics: const BouncingScrollPhysics(),
           itemCount: 10,
           itemBuilder: (BuildContext buildContext, int index) {
             if (index == 0) {
@@ -121,7 +121,7 @@ class _InstagramScreenState extends State<InstagramScreen> {
 class _HorizontalFriendList extends StatelessWidget {
   Widget _userAvatar() {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 10),
+      margin: const EdgeInsets.only(left: 16, right: 10),
       alignment: Alignment.center,
       height: 76,
       child: Column(
@@ -251,7 +251,7 @@ class _HorizontalFriendList extends StatelessWidget {
         scrollDirection: Axis.horizontal,
         physics: const BouncingScrollPhysics(),
         shrinkWrap: true,
-        itemCount: 15,
+        itemCount: 10,
         itemBuilder: (BuildContext buildContext, int index) {
           if (index == 0) {
             return _userAvatar();
