@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
+import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -152,7 +154,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: MediaQuery.of(context).size.width,
                 height: 32,
                 child: OutlinedButton(
-                  onPressed: () {},
+                  onPressed: () => context.read<AuthenticationBloc>().add(AuthenticationDisproved()),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(0),
                     primary: Colors.grey,

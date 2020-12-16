@@ -18,6 +18,9 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     if (event is AuthenticationTried) {
       yield* _mapAuthenticationTriedToState(event);
     }
+    if (event is AuthenticationDisproved) {
+      yield* _mapAuthenticationDisprovedToState(event);
+    }
   }
 
   Stream<AuthenticationState> _mapAuthenticationTriedToState(AuthenticationTried event) async* {
@@ -28,5 +31,10 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
     } catch (e) {
       yield AuthenticationFailure();
     }
+  }
+
+  Stream<AuthenticationState> _mapAuthenticationDisprovedToState(AuthenticationDisproved event) async* {
+    yield AuthenticationInProgress();
+    yield AuthenticationDisproveSuccess();
   }
 }

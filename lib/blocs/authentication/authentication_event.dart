@@ -17,3 +17,5 @@ class AuthenticationTried extends AuthenticationEvent {
   @override
   List<Object> get props => <Object>[user];
 }
+
+class AuthenticationDisproved extends AuthenticationEvent {}
