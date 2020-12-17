@@ -1,11 +1,11 @@
-class User {
-  User({
+class CustomUser {
+  CustomUser({
     this.id,
     this.userName,
     this.avatar,
   });
 
-  int id;
+  String id;
   String userName;
   String avatar;
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
 import 'package:my_instagram/blocs/login/login_bloc.dart';
-import 'package:my_instagram/models/user.dart';
+import 'package:my_instagram/models/custom_user.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -12,7 +12,7 @@ class LoginScreen extends StatelessWidget {
         if (state is LoginViaFacebookSuccess) {
           context.read<AuthenticationBloc>().add(
                 AuthenticationTried(
-                  user: User(id: 1, userName: 'test', avatar: ''),
+                  customUser: state.customUser,
                 ),
               );
         }
@@ -123,7 +123,7 @@ class LoginScreen extends StatelessWidget {
                 onTap: () {
                   context.read<AuthenticationBloc>().add(
                         AuthenticationTried(
-                          user: User(id: 1, userName: 'test', avatar: ''),
+                          customUser: CustomUser(id: '1', userName: 'test', avatar: ''),
                         ),
                       );
                 },

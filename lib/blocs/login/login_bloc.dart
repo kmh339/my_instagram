@@ -4,6 +4,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/widgets.dart';
+import 'package:my_instagram/models/custom_user.dart';
 import 'package:my_instagram/repositories/authentication/authentication_repository.dart';
 
 part 'login_event.dart';
@@ -33,7 +34,12 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       final UserCredential _userCredential = await _authenticationRepository.signInWithFacebook();
       if (_userCredential != null) {
         print(_userCredential.user.displayName);
-        yield LoginViaFacebookSuccess();
+        print(_userCredential.user.uid);
+        final CustomUser _customUser = CustomUser(
+          id: _userCredential.user.uid,
+          userName: _userCredential.user.displayName,
+        );
+        yield LoginViaFacebookSuccess(customUser: _customUser);
       } else {
         yield LoginFailure();
       }

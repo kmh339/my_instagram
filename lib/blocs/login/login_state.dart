@@ -13,4 +13,13 @@ class LoginInProgress extends LoginState {}
 
 class LoginFailure extends LoginState {}
 
-class LoginViaFacebookSuccess extends LoginState {}
+class LoginViaFacebookSuccess extends LoginState {
+  const LoginViaFacebookSuccess({
+    @required this.customUser,
+  }) : assert(customUser != null);
+
+  final CustomUser customUser;
+
+  @override
+  List<Object> get props => <Object>[customUser];
+}
