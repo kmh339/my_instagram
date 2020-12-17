@@ -1,10 +1,14 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:my_instagram/models/custom_user.dart';
 import 'package:my_instagram/repositories/authentication/authentication_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 
 class AuthenticationRepositoryImpl extends AuthenticationRepository {
+  final FirebaseStorage _firebaseStorage = FirebaseStorage.instance;
+
   @override
   Future<CustomUser> authenticate() async {
     try {

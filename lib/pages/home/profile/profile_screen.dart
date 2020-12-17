@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_icons/flutter_icons.dart';
 import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
+import 'package:my_instagram/pages/home/profile/profile_edit/profile_edit_screen.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -154,7 +155,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 width: MediaQuery.of(context).size.width,
                 height: 32,
                 child: OutlinedButton(
-                  onPressed: () => context.read<AuthenticationBloc>().add(AuthenticationDisproved()),
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (BuildContext buildContext) => ProfileEditScreen(),
+                    ),
+                  ),
                   style: OutlinedButton.styleFrom(
                     padding: const EdgeInsets.all(0),
                     primary: Colors.grey,
@@ -167,7 +173,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     ),
                   ),
                   child: Text(
-                    '프로필편집(로그아웃)',
+                    '프로필편집',
                     style: TextStyle(
                       fontSize: 12,
                       color: Colors.black,
