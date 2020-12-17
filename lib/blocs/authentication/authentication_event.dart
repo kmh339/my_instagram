@@ -7,15 +7,6 @@ abstract class AuthenticationEvent extends Equatable {
   List<Object> get props => <Object>[];
 }
 
-class AuthenticationTried extends AuthenticationEvent {
-  AuthenticationTried({
-    @required this.customUser,
-  }) : assert(customUser != null);
-
-  final CustomUser customUser;
-
-  @override
-  List<Object> get props => <Object>[customUser];
-}
+class AuthenticationTried extends AuthenticationEvent {}
 
 class AuthenticationDisproved extends AuthenticationEvent {}

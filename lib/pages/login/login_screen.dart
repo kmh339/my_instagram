@@ -10,11 +10,7 @@ class LoginScreen extends StatelessWidget {
     return BlocListener<LoginBloc, LoginState>(
       listener: (BuildContext buildContext, LoginState state) {
         if (state is LoginViaFacebookSuccess) {
-          context.read<AuthenticationBloc>().add(
-                AuthenticationTried(
-                  customUser: state.customUser,
-                ),
-              );
+          context.read<AuthenticationBloc>().add(AuthenticationTried());
         }
       },
       child: GestureDetector(
@@ -122,9 +118,7 @@ class LoginScreen extends StatelessWidget {
               GestureDetector(
                 onTap: () {
                   context.read<AuthenticationBloc>().add(
-                        AuthenticationTried(
-                          customUser: CustomUser(id: '1', userName: 'test', avatar: ''),
-                        ),
+                        AuthenticationTried(),
                       );
                 },
                 child: Container(

@@ -4,12 +4,19 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:meta/meta.dart';
 import 'package:my_instagram/models/custom_user.dart';
+import 'package:my_instagram/repositories/authentication/authentication_repository.dart';
 
 part 'authentication_event.dart';
 part 'authentication_state.dart';
 
 class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> {
-  AuthenticationBloc() : super(AuthenticationInitial());
+  AuthenticationBloc({
+    @required AuthenticationRepository authenticationRepository,
+  })  : assert(authenticationRepository != null),
+        _authenticationRepository = authenticationRepository,
+        super(AuthenticationInitial());
+
+  final AuthenticationRepository _authenticationRepository;
 
   @override
   Stream<AuthenticationState> mapEventToState(
@@ -26,8 +33,12 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
   Stream<AuthenticationState> _mapAuthenticationTriedToState(AuthenticationTried event) async* {
     yield AuthenticationInProgress();
     try {
-      final CustomUser _customUser = event.customUser;
-      yield AuthenticationTrySuccess();
+      final CustomUser _customUser = await _authenticationRepository.authenticate();
+      if (_customUser.id != null) {
+        yield AuthenticationTrySuccess();
+      } else {
+        yield AuthenticationFailure();
+      }
     } catch (e) {
       yield AuthenticationFailure();
     }
@@ -35,6 +46,6 @@ class AuthenticationBloc extends Bloc<AuthenticationEvent, AuthenticationState> 
 
   Stream<AuthenticationState> _mapAuthenticationDisprovedToState(AuthenticationDisproved event) async* {
     yield AuthenticationInProgress();
-    yield AuthenticationDisproveSuccess();
+    yield AuthenticationFailure();
   }
 }

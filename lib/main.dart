@@ -5,6 +5,7 @@ import 'package:my_instagram/blocs/authentication/authentication_bloc.dart';
 import 'package:my_instagram/cubits/cubit/bottom_navigator_cubit.dart';
 import 'package:my_instagram/pages/home/home_screen.dart';
 import 'package:my_instagram/pages/login/login_screen.dart';
+import 'package:my_instagram/pages/splash_screen.dart';
 import 'package:my_instagram/repositories/authentication/authentication_repository.dart';
 import 'package:my_instagram/repositories/authentication/authentication_repository_impl.dart';
 
@@ -20,7 +21,10 @@ Future<void> main() async {
       child: MultiBlocProvider(
         providers: [
           BlocProvider<AuthenticationBloc>(
-            create: (BuildContext buildContext) => AuthenticationBloc(),
+            create: (BuildContext buildContext) {
+              final AuthenticationRepository _authenticationRepository = RepositoryProvider.of<AuthenticationRepository>(buildContext);
+              return AuthenticationBloc(authenticationRepository: _authenticationRepository)..add(AuthenticationTried());
+            },
           ),
           BlocProvider<LoginBloc>(
             create: (BuildContext buildContext) {
@@ -56,7 +60,10 @@ class MyInstagram extends StatelessWidget {
               child: HomeScreen(),
             );
           }
-          return LoginScreen();
+          if (state is AuthenticationFailure) {
+            return LoginScreen();
+          }
+          return SplashScreen();
         },
       ),
     );
